@@ -1,0 +1,50 @@
+
+Получение расписания:
+GET запрос к api.php?action=schedule&id=<generation_id>
+Симуляция записи:
+
+POST запрос к api.php?action=simulate с JSON-телом, содержащим следующие поля:
+
+json
+
+
+   {
+     "generation_id": <int>,
+     "day": <int>,
+     "time": "<HH:MM>",
+     "duration": <int>,
+     "patient_name": "<string>"
+   }
+
+Пример использования API для получения расписания:
+
+javascript
+
+
+fetch('api.php?action=schedule&id=1234')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+
+
+
+Пример использования API для симуляции записи:
+
+javascript
+
+fetch('api.php?action=simulate', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    generation_id: 1234,
+    day: 1,
+    time: '10:00',
+    duration: 30,
+    patient_name: 'Name P'
+  }),
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
